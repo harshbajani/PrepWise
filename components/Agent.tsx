@@ -62,7 +62,7 @@ const Agent = ({ userName, userId, type }: AgentProps) => {
           </div>
         </div>
       )}
-      <div className="w-full flex justify-center">
+      {/* <div className="w-full flex justify-center">
         {callStatus !== "ACTIVE" ? (
           <button className="relative btn-call">
             <span
@@ -81,7 +81,7 @@ const Agent = ({ userName, userId, type }: AgentProps) => {
         ) : (
           <button className="btn-disconnect">End</button>
         )}
-      </div>
+      </div> */}
     </>
   );
 };
