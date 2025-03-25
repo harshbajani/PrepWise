@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-unused-vars */
 import { cn } from "@/lib/utils";
 import Image from "next/image";
 import React from "react";
@@ -10,7 +11,7 @@ enum CallStatus {
 }
 
 const Agent = ({ userName, userId, type }: AgentProps) => {
-  const callStatus = CallStatus.FINISHED;
+  const callStatus = CallStatus.INACTIVE;
   const isSpeaking = true;
   const messages = [
     "what's your name?",

@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-unused-vars */
 import { getRandomInterviewCover } from "@/lib/utils";
 import dayjs from "dayjs";
 import Image from "next/image";
@@ -11,9 +12,6 @@ const InterviewCard = ({
   role,
   type,
   techstack,
-  level,
-  questions,
-  finalized,
   createdAt,
 }: InterviewCardProps) => {
   const feedback = null as Feedback | null;
