@@ -38,7 +38,7 @@ export async function createFeedback(params: CreateFeedbackParams) {
         "You are a professional interviewer analyzing a mock interview. Your task is to evaluate the candidate based on structured categories",
     });
 
-    const feedback = {
+    const feedback = await db.collection("feedback").add({
       interviewId: interviewId,
       userId: userId,
       totalScore: object.totalScore,
@@ -47,7 +47,7 @@ export async function createFeedback(params: CreateFeedbackParams) {
       areasForImprovement: object.areasForImprovement,
       finalAssessment: object.finalAssessment,
       createdAt: new Date().toISOString(),
-    };
+    });
 
     let feedbackRef;
 
