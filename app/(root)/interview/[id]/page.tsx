@@ -28,49 +28,55 @@ const InterviewDetails = async ({ params }: RouteParams) => {
 
   return (
     <>
-      <div className="flex flex-row gap-4 justify-between">
-        <div className="flex flex-row gap-4 items-center max-sm:flex-col">
-          <div className="flex flex-row gap-4 items-center">
-            <Image
-              src={getRandomInterviewCover()}
-              alt="cover-image"
-              width={40}
-              height={40}
-              className="rounded-full object-cover size-[40px]"
-            />
-            <h3 className="capitalize">{interview.role} Interview</h3>
+      <div className="flex flex-col space-y-4">
+        <div className="flex flex-col sm:flex-row justify-between items-start sm:items-center gap-4">
+          <div className="flex flex-col sm:flex-row items-start sm:items-center gap-4 w-full">
+            <div className="flex flex-row items-center gap-4 w-full sm:w-auto">
+              <Image
+                src={getRandomInterviewCover()}
+                alt="cover-image"
+                width={40}
+                height={40}
+                className="rounded-full object-cover size-[40px] shrink-0"
+              />
+              <h3 className="capitalize truncate">
+                {interview.role} Interview
+              </h3>
+            </div>
+
+            <div className="w-full sm:w-auto">
+              <DisplayTechIcons techStack={interview.techstack} />
+            </div>
           </div>
 
-          <DisplayTechIcons techStack={interview.techstack} />
+          <div className="flex flex-col sm:flex-row items-start sm:items-center gap-4 w-full sm:w-auto">
+            <p className="bg-dark-200 px-4 py-2 rounded-lg h-fit w-full sm:w-auto text-center">
+              {interview.type}
+            </p>
+            {feedback && (
+              <Button className="btn-secondary w-full sm:w-auto" asChild>
+                <Link
+                  href={`/interview/${id}/feedback`}
+                  className="flex justify-center w-full"
+                >
+                  <p className="text-sm font-semibold text-primary-200 text-center">
+                    View Feedback
+                  </p>
+                </Link>
+              </Button>
+            )}
+          </div>
         </div>
 
-        <div className="flex flex-row items-center gap-4">
-          <p className="bg-dark-200 px-4 py-2 rounded-lg h-fit">
-            {interview.type}
-          </p>
-          {feedback && (
-            <Button className="btn-secondary flex-1" asChild>
-              <Link
-                href={`/interview/${id}/feedback`}
-                className="flex w-full justify-center"
-              >
-                <p className="text-sm font-semibold text-primary-200 text-center">
-                  View Feedback
-                </p>
-              </Link>
-            </Button>
-          )}
-        </div>
+        <Agent
+          userName={user?.name || ""}
+          userId={user?.id}
+          interviewId={id}
+          type="interview"
+          questions={interview.questions}
+          feedbackId={feedback?.id}
+        />
       </div>
-
-      <Agent
-        userName={user?.name || ""}
-        userId={user?.id}
-        interviewId={id}
-        type="interview"
-        questions={interview.questions}
-        feedbackId={feedback?.id}
-      />
     </>
   );
 };
