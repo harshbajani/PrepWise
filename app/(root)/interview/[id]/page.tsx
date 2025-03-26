@@ -10,6 +10,8 @@ import {
 } from "@/lib/actions/general.action";
 import { getCurrentUser } from "@/lib/actions/auth.action";
 import DisplayTechIcons from "@/components/DisplayTechIcons";
+import { Button } from "@/components/ui/button";
+import Link from "next/link";
 
 const InterviewDetails = async ({ params }: RouteParams) => {
   const { id } = await params;
@@ -42,9 +44,23 @@ const InterviewDetails = async ({ params }: RouteParams) => {
           <DisplayTechIcons techStack={interview.techstack} />
         </div>
 
-        <p className="bg-dark-200 px-4 py-2 rounded-lg h-fit">
-          {interview.type}
-        </p>
+        <div className="flex flex-row items-center gap-4">
+          <p className="bg-dark-200 px-4 py-2 rounded-lg h-fit">
+            {interview.type}
+          </p>
+          {feedback && (
+            <Button className="btn-secondary flex-1" asChild>
+              <Link
+                href={`/interview/${id}/feedback`}
+                className="flex w-full justify-center"
+              >
+                <p className="text-sm font-semibold text-primary-200 text-center">
+                  View Feedback
+                </p>
+              </Link>
+            </Button>
+          )}
+        </div>
       </div>
 
       <Agent
